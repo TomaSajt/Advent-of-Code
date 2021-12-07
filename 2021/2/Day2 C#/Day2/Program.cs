@@ -37,5 +37,5 @@ Console.WriteLine(" ".Select(_ => File.ReadAllLines("input.txt").Select(x => (k:
 
 
 
-Console.WriteLine(" ".Select(_ => File.ReadAllLines("input.txt").Select(x => (k: x.Split(' ')[0], v: int.Parse(x.Split(' ')[1])))).Select(f => f.Sum(x => x.k switch { "down" => x.v, "up" => -x.v, _ => 0 }) * f.Sum(x => x.k == "forward" ? x.v : 0)).First());
-Console.WriteLine(" ".Select(_ => File.ReadAllLines("input.txt").Select(x => (k: x.Split(' ')[0], v: int.Parse(x.Split(' ')[1]))).Aggregate((x: 0, y: 0, a: 0), (p, i) => i.k switch { "down" => (p.x, p.y, p.a + i.v), "up" => (p.x, p.y, p.a - i.v), _ => (p.x + i.v, p.y + p.a * i.v, p.a) })).Select(a => a.x * a.y).First());
+Console.WriteLine(" ".Select(_ => File.ReadAllLines("input.txt").Select(x => (k: x.Split(' ')[0], v: int.Parse(x.Split(' ')[1])))).Select(f => f.Sum(x => x.k[0] switch { 'd' => x.v, 'u' => -x.v, _ => 0 }) * f.Sum(x => x.k[0] == 'f' ? x.v : 0)).First());
+Console.WriteLine(" ".Select(_ => File.ReadAllLines("input.txt").Select(x => (k: x.Split(' ')[0], v: int.Parse(x.Split(' ')[1]))).Aggregate((x: 0, y: 0, a: 0), (p, i) => i.k[0] switch { 'd' => (p.x, p.y, p.a + i.v), 'u' => (p.x, p.y, p.a - i.v), _ => (p.x + i.v, p.y + p.a * i.v, p.a) })).Select(a => a.x * a.y).First());
