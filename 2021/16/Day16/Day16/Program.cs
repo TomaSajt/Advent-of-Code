@@ -1,15 +1,4 @@
-﻿Func<List<long>, long>[] funcMap =
-{
-    list => list.Sum(),
-    list => list.Aggregate(1L, (a, b) => a * b),
-    list => list.Min(),
-    list => list.Max(),
-    list => throw new Exception(),
-    list => list[0] > list[1] ? 1 : 0,
-    list => list[0] < list[1] ? 1 : 0,
-    list => list[0] == list[1] ? 1 : 0
-};
-using StreamReader sr = new("input.txt");
+﻿using StreamReader sr = new("input.txt");
 int count = 0, versionSum = 0, pointer = 0, currHex = 0;
 var res = Solve();
 Console.WriteLine($"{versionSum}\n{res}");
@@ -50,14 +39,24 @@ long Solve()
     int lc = ReadBits(1) == 0 ? 15 : 11;
     int l = ReadBits(lc);
     count += lc + 1;
-    var subPackets = new List<long>();
+    var nums = new List<long>();
     if (lc == 15)
     {
         int temp = count;
-        while (temp + l > count) subPackets.Add(Solve());
+        while (temp + l > count) nums.Add(Solve());
     }
-    else for (int i = 0; i < l; i++) subPackets.Add(Solve());
-    return funcMap[packetType](subPackets);
+    else for (int i = 0; i < l; i++) nums.Add(Solve());
+    return packetType switch
+    {
+        0 => nums.Sum(),
+        1 => nums.Aggregate(1L, (a, b) => a * b),
+        2 => nums.Min(),
+        3 => nums.Max(),
+        5 => nums[0] > nums[1] ? 1 : 0,
+        6 => nums[0] < nums[1] ? 1 : 0,
+        7 => nums[0] == nums[1] ? 1 : 0,
+        _ => throw new Exception()
+    };
 }
 
 
