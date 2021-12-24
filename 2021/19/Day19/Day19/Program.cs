@@ -1,4 +1,6 @@
-﻿
+﻿//WHY DOESNT THIS WORK???
+
+
 Vec3D px = (1, 0, 0), nx = (-1, 0, 0), py = (0, 1, 0), ny = (0, -1, 0), pz = (0, 0, 1), nz = (0, 0, -1);
 
 var orientations3D = new (Vec3D rx, Vec3D ry, Vec3D rz)[] {
