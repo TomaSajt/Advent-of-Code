@@ -1,4 +1,7 @@
-﻿var input = File.ReadAllText("input.txt").Trim().Split("\r\n\r\n");
+﻿using System.Diagnostics;
+
+var sw = Stopwatch.StartNew();
+var input = File.ReadAllText("input.txt").Trim().Split("\r\n\r\n");
 var algo = input[0].Select(c => c == '#').ToArray();
 var spImage = input[1].Split("\r\n");
 int h = spImage.Length;
@@ -10,6 +13,8 @@ for (int i = 0; i < h; i++)
         image[i, j] = spImage[i][j] == '#';
 for (int i = 0; i < 50; i++) Enhance();
 Console.WriteLine(image.Cast<bool>().Count(b => b));
+sw.Stop();
+Console.WriteLine(sw.ElapsedMilliseconds);
 bool getAt(int i, int j) => i >= 0 && i < h && j >= 0 && j < w ? image[i, j] : bg;
 bool applyKernel(int i, int j)
 {
@@ -24,12 +29,12 @@ bool applyKernel(int i, int j)
 }
 void Enhance()
 {
-    var newImage = new bool[h + 4, w + 4];
-    for (int i = -2; i < h + 2; i++)
-        for (int j = -2; j < w + 2; j++)
-            newImage[i + 2, j + 2] = applyKernel(i, j);
+    var newImage = new bool[h + 2, w + 2];
+    for (int i = -1; i < h + 1; i++)
+        for (int j = -1; j < w + 1; j++)
+            newImage[i + 1, j + 1] = applyKernel(i, j);
     image = newImage;
-    w += 4;
-    h += 4;
+    w += 2;
+    h += 2;
     bg = bg ? algo[511] : algo[0];
 }

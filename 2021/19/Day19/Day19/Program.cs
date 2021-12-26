@@ -35,103 +35,53 @@ var orientations3D = new (Vec3D rx, Vec3D ry, Vec3D rz)[] {
     (nx,nz,ny),
     (ny,nx,nz),
     (nz,ny,nx),
-
-    
-
-    /*
-    (nx,py,pz),
-    (nz,px,py),
-    (ny,pz,px),
-
-    (nx,pz,ny),
-    (ny,px,nz),
-    (nz,py,nx),
-
-    (nx,nz,py),
-    (ny,nx,pz),
-    (nz,ny,px),
-
-    (nx,ny,nz),
-    (nz,nx,ny),
-    (ny,nz,nx),
-
-    (px,pz,py),
-    (py,px,pz),
-    (pz,py,px),
-
-    (px,py,nz),
-    (pz,px,ny),
-    (py,pz,nx),
-
-    (px,ny,pz),
-    (pz,nx,py),
-    (py,nz,px),
-
-    (px,nz,ny),
-    (py,nx,nz),
-    (pz,ny,nx)*/
 };
 
 
 
-var scanners = File.ReadAllText("input.txt").Split("\r\n\r\n").Select(sctext =>
+var scanners = File.ReadAllText("input.txt").Trim().Split("\r\n\r\n").Select(sctext =>
 {
     var sp = sctext.Split("\r\n").ToList();
     sp.RemoveAt(0);
-    sp.RemoveAt(sp.Count - 1);
     var t = sp.Select(l => l.Split(',')).ToList();
     return t.Select(s => (Vec3D)(int.Parse(s[0]), int.Parse(s[1]), int.Parse(s[2]))).ToHashSet();
 }).ToList();
+Console.WriteLine();
 
-scanners[0] = scanners[0].Select(x => x - scanners[0].First()).ToHashSet();
-
-for (int i = 0; i < scanners.Count; i++)
-{
-    for (int j = 1; j < scanners.Count; j++)
-    {
-        var res = TryUnite(scanners[0], scanners[j]);
-        if (res is null) continue;
-        scanners[0] = res;
-    }
-}
-
-/*
 for (int k = 0; k < scanners.Count; k++)
 {
     for (int i = 0; i < scanners.Count; i++)
     {
         for (int j = 0; j < scanners.Count; j++)
         {
-            var res = TryUnite(scanners[i], scanners[j]);
-            if (res is null) continue;
-            scanners[i] = res;
+            if (i == j || scanners[i].Count < 1 || scanners[j].Count < 1) continue;
+            var res = TryUnite(i, j);
         }
     }
-}*/
 
-HashSet<Vec3D>? TryUnite(HashSet<Vec3D> sc0, HashSet<Vec3D> sc1)
+}
+
+
+HashSet<Vec3D>? TryUnite(int i, int j)
 {
-    var offset0 = sc0.First();
-    var set0 = new List<Vec3D>(sc0).Select(v => v - offset0).ToHashSet();
-    int i = 0;
-    foreach (var ori in orientations3D)
+    var offset0 = scanners[i].First();
+    int orind = 0;
+    foreach (var or in orientations3D)
     {
-        var tr = sc1.Select(x => x.Transform(ori));
+        var tr = scanners[j].Select(x => x.Transform(or));
         foreach (var offset1 in tr)
         {
-            var set1 = tr.Select(x => x - offset1).ToHashSet();
-            var c = set0.Intersect(set1).Count();
-            //Console.WriteLine(c);
+            var set1 = tr.Select(x => x - offset1 + offset0).ToHashSet();
+            var c = scanners[i].Intersect(set1).Count();
             if (c >= 12)
             {
-                Console.WriteLine($"Found intersection at ori {i} of size {c}");
-                set1.Log();
-                return set0.Union(set1).ToHashSet();
+                var union = scanners[i].Union(set1).ToHashSet();
+                Console.WriteLine($"i:{i} j:{j} size(i)={scanners[i].Count} size(j)={scanners[j].Count} ori {orind} intersect size={c} union size={union.Count}");
+                return union;
             }
         }
-        i++;
+        orind++;
     }
-    Console.WriteLine("Didn't find an intersection :'(");
     return null;
 }
 
