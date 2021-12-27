@@ -11,7 +11,7 @@
 string Add(string num1, string num2)
 {
     string num = $"[{num1},{num2}]";
-    TryExplode(ref num);
+    if (TryExplode(num, out var res)) num = res!;
     return num;
     /*
 while (true)
@@ -22,38 +22,60 @@ while (true)
 }*/
 
 }
-bool TryExplode(ref string num)
+
+// LeftLeftLeft LeftLeftNum LeftLeftRight LeftVal , RightVal
+
+
+bool TryExplode(string num, out string? res)
 {
-    int i = 0;
     int count = 0;
-    while (true)
+    for (int i = 0; i < num.Length; i++)
     {
         if (num[i] == '[') count++;
         else if (num[i] == ']') count--;
         if (count == 5)
         {
-            int l = i, r = num.IndexOf(']', i);
-            var sp = num[(l + 1)..r].Split(',');
-            int leftVal = int.Parse(sp[0]), rightVal = int.Parse(sp[1]);
-            for (int j = l - 1; j >= 0; j--)
+            int clInd = i, crInd = num.IndexOf(']', i);
+            string LeftSide = num[..clInd], RightSide = num[(crInd+1)..];
+            var sp = num[(clInd + 1)..crInd].Split(',');
+            int LeftVal = int.Parse(sp[0]), RightVal = int.Parse(sp[1]);
+
+            int a = Array.FindLastIndex(LeftSide.ToCharArray(), c => !IsDividerChar(c));
+            if (a!=-1)
             {
-                if (char.IsDigit(num[j]))
-                {
-                    int k;
-                    for (k = j - 1; k >= 0 && char.IsDigit(num[k]); k--) ;
-                    k++;
-                    int number
-                    Console.WriteLine(num[k..(j+1)]);
-                    break;
-                }
+                var temp = LeftSide[..(a + 1)];
+                int lllInd = Array.FindLastIndex(temp.ToCharArray(), IsDividerChar);
+                var LLL = LeftSide[..(lllInd + 1)];
+                var LLV = int.Parse(LeftSide[(lllInd + 1)..(a + 1)]);
+                var LLR = LeftSide[(a + 1)..];
+                LLV += LeftVal;
+                LeftSide = $"{LLL}{LLV}{LLR}";
             }
-            Console.WriteLine(num[l..(r + 1)]);
-            break;
+            a = Array.FindIndex(RightSide.ToCharArray(), IsDividerChar);
+            
+            if (a != -1)
+            {
+                var temp = RightSide[a..];
+                int rrrInd = Array.FindIndex(temp.ToCharArray(), a, c => !IsDividerChar(c));
+                var RRR = RightSide[rrrInd..];
+                var pog = temp[(a + 1)..(rrrInd + 1)];
+                var RRV = int.Parse(pog);
+                var RRL = RightSide[..a];
+                RRV += RightVal;
+                RightSide = $"{RRL}{RRV}{RRR}";
+            }
+
+
+
+            Console.WriteLine($"{LeftSide}0{RightSide}");
+            res = num;
+            return true;
         }
-        i++;
     }
-    return true;
+    res = null;
+    return false;
 }
+bool IsDividerChar(char c) => c == ',' || c == ']' || c == '[';
 bool TrySplit(ref string num)
 {
     return true;
