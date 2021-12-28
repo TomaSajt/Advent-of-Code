@@ -1,9 +1,6 @@
-﻿//WHY DOESNT THIS WORK???
+﻿Vec3D px = (1, 0, 0), nx = (-1, 0, 0), py = (0, 1, 0), ny = (0, -1, 0), pz = (0, 0, 1), nz = (0, 0, -1);
 
-
-Vec3D px = (1, 0, 0), nx = (-1, 0, 0), py = (0, 1, 0), ny = (0, -1, 0), pz = (0, 0, 1), nz = (0, 0, -1);
-
-var orientations3D = new (Vec3D rx, Vec3D ry, Vec3D rz)[] {
+var orientations = new (Vec3D rx, Vec3D ry, Vec3D rz)[] {
     (px,py,pz),
     (pz,px,py),
     (py,pz,px),
@@ -36,9 +33,6 @@ var orientations3D = new (Vec3D rx, Vec3D ry, Vec3D rz)[] {
     (ny,nx,nz),
     (nz,ny,nx),
 };
-
-
-
 var scanners = File.ReadAllText("input.txt").Trim().Split("\r\n\r\n").Select(sctext =>
 {
     var sp = sctext.Split("\r\n").ToList();
@@ -48,39 +42,38 @@ var scanners = File.ReadAllText("input.txt").Trim().Split("\r\n\r\n").Select(sct
 }).ToList();
 Console.WriteLine();
 
-for (int k = 0; k < scanners.Count; k++)
-{
-    for (int i = 0; i < scanners.Count; i++)
-    {
-        for (int j = 0; j < scanners.Count; j++)
-        {
-            if (i == j || scanners[i].Count < 1 || scanners[j].Count < 1) continue;
-            var res = TryUnite(i, j);
-        }
-    }
+var N = scanners.Count;
+var unions = new HashSet<Vec3D>?[N, N];
 
+for (int i = 0; i < N; i++)
+{
+    for (int j = 0; j < N; j++)
+    {
+        if (i == j || scanners[i].Count == 0 || scanners[j].Count == 0) continue;
+        unions[i, j] = TryUnite(i, j);
+    }
 }
 
 
 HashSet<Vec3D>? TryUnite(int i, int j)
 {
     var offset0 = scanners[i].First();
-    int orind = 0;
-    foreach (var or in orientations3D)
+    int oInd = 0;
+    foreach (var orientation in orientations)
     {
-        var tr = scanners[j].Select(x => x.Transform(or));
+        var tr = scanners[j].Select(x => x.Transform(orientation)); //mátrix-transzformáció az orientáció alapján
         foreach (var offset1 in tr)
         {
-            var set1 = tr.Select(x => x - offset1 + offset0).ToHashSet();
-            var c = scanners[i].Intersect(set1).Count();
+            var offsetSet = tr.Select(x => x - offset1 + offset0).ToHashSet(); // ráhelyezi az i. scanner első elemére a transzformált j. scanner jelenlegi elemét
+            var c = scanners[i].Intersect(offsetSet).Count();
             if (c >= 12)
             {
-                var union = scanners[i].Union(set1).ToHashSet();
-                Console.WriteLine($"i:{i} j:{j} size(i)={scanners[i].Count} size(j)={scanners[j].Count} ori {orind} intersect size={c} union size={union.Count}");
+                var union = scanners[i].Union(offsetSet).ToHashSet();
+                Console.WriteLine($"i: {i,-3} j: {j,-3} orientation: {oInd,-3} intersect_size: {c,-3} union_size: {union.Count,-3}");
                 return union;
             }
         }
-        orind++;
+        oInd++;
     }
     return null;
 }
@@ -94,8 +87,4 @@ record struct Vec3D(int X, int Y, int Z)
     public static Vec3D operator *(int n, Vec3D v) => v * n;
     public static implicit operator Vec3D((int ih, int jh, int kh) t) => new(t.ih, t.jh, t.kh);
     public Vec3D Transform((Vec3D rx, Vec3D ry, Vec3D rz) orientation) => X * orientation.rx + Y * orientation.ry + Z * orientation.rz;
-}
-public static class Extensions
-{
-    public static void Log<T>(this IEnumerable<T> list) => Console.WriteLine(string.Join('\n', list.Select(x => $"{x}")));
 }
