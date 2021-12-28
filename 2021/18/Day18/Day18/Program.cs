@@ -1,82 +1,69 @@
-﻿// *TODO* Actually do this
+﻿var nums = File.ReadAllLines("input.txt");
+Console.WriteLine(Magnitude(nums.Aggregate(Add)));
+int max = -1;
+for (int i = 0; i < nums.Length; i++)
+    for (int j = 0; j < nums.Length; j++)
+        if (i != j) max = Math.Max(max, Magnitude(Add(nums[i], nums[j])));
+Console.WriteLine(max);
 
-
+int Magnitude(string num)
 {
-
-    string num1 = "[[[42012,[4,3]],4],[7,[[8,4],9]]]";
-    string num2 = "[1,1]";
-    Console.WriteLine(Add(num1, num2));
+    if (num.Length == 1 && char.IsDigit(num[0])) return int.Parse(num);
+    int c = 0;
+    for (int i = 1; i < num.Length - 1; i++)
+        if (num[i] == '[') c++;
+        else if (num[i] == ']') c--;
+        else if (c == 0 && num[i] == ',') return 3 * Magnitude(num[1..i]) + 2 * Magnitude(num[(i + 1)..^1]);
+    throw new Exception("This should never happen");
 }
 
 string Add(string num1, string num2)
 {
     string num = $"[{num1},{num2}]";
-    if (TryExplode(num, out var res)) num = res!;
+    while (TryExplode(ref num) || TrySplit(ref num)) ;
     return num;
-    /*
-while (true)
-{
-    if (TryExplode(ref num)) continue;
-    if (TrySplit(ref num)) continue;
-    break;
-}*/
-
 }
 
-// LeftLeftLeft LeftLeftNum LeftLeftRight LeftVal , RightVal
-
-
-bool TryExplode(string num, out string? res)
+bool TryExplode(ref string N)
 {
     int count = 0;
-    for (int i = 0; i < num.Length; i++)
+    for (int i = 0; i < N.Length; i++)
     {
-        if (num[i] == '[') count++;
-        else if (num[i] == ']') count--;
-        if (count == 5)
+        if (N[i] == '[') count++;
+        else if (N[i] == ']') count--;
+        if (count != 5) continue;
+        int j = N.IndexOf(']', i);
+        string L = N[..i], R = N[(j + 1)..];
+        var sp = N[(i + 1)..j].Split(',');
+        int CLV = int.Parse(sp[0]), CRV = int.Parse(sp[1]);
+        int a = Array.FindLastIndex(L.ToCharArray(), char.IsDigit);
+        if (a++ != -1)
         {
-            int clInd = i, crInd = num.IndexOf(']', i);
-            string LeftSide = num[..clInd], RightSide = num[(crInd+1)..];
-            var sp = num[(clInd + 1)..crInd].Split(',');
-            int LeftVal = int.Parse(sp[0]), RightVal = int.Parse(sp[1]);
-
-            int a = Array.FindLastIndex(LeftSide.ToCharArray(), c => !IsDividerChar(c));
-            if (a!=-1)
-            {
-                var temp = LeftSide[..(a + 1)];
-                int lllInd = Array.FindLastIndex(temp.ToCharArray(), IsDividerChar);
-                var LLL = LeftSide[..(lllInd + 1)];
-                var LLV = int.Parse(LeftSide[(lllInd + 1)..(a + 1)]);
-                var LLR = LeftSide[(a + 1)..];
-                LLV += LeftVal;
-                LeftSide = $"{LLL}{LLV}{LLR}";
-            }
-            a = Array.FindIndex(RightSide.ToCharArray(), IsDividerChar);
-            
-            if (a != -1)
-            {
-                var temp = RightSide[a..];
-                int rrrInd = Array.FindIndex(temp.ToCharArray(), a, c => !IsDividerChar(c));
-                var RRR = RightSide[rrrInd..];
-                var pog = temp[(a + 1)..(rrrInd + 1)];
-                var RRV = int.Parse(pog);
-                var RRL = RightSide[..a];
-                RRV += RightVal;
-                RightSide = $"{RRL}{RRV}{RRR}";
-            }
-
-
-
-            Console.WriteLine($"{LeftSide}0{RightSide}");
-            res = num;
-            return true;
+            int LLI = Array.FindLastIndex(L[..a].ToCharArray(), c => !char.IsDigit(c)) + 1;
+            L = $"{L[..LLI]}{int.Parse(L[LLI..a]) + CLV}{L[a..]}";
         }
+        a = Array.FindIndex(R.ToCharArray(), char.IsDigit);
+        if (a != -1)
+        {
+            int RRI = Array.FindIndex(R.ToCharArray(), a, c => !char.IsDigit(c));
+            R = $"{R[..a]}{int.Parse(R[a..RRI]) + CRV}{R[RRI..]}";
+        }
+        N = $"{L}0{R}";
+        return true;
     }
-    res = null;
     return false;
 }
-bool IsDividerChar(char c) => c == ',' || c == ']' || c == '[';
 bool TrySplit(ref string num)
 {
-    return true;
+    for (int i = 0; i < num.Length - 1; i++)
+    {
+        if (!char.IsDigit(num[i]) || !char.IsDigit(num[i + 1])) continue;
+        int j = i + 1;
+        while (char.IsDigit(num[j])) j++;
+        string Left = num[..i], Right = num[j..];
+        int Value = int.Parse(num[i..j]);
+        num = $"{Left}[{Value / 2},{(Value + 1) / 2}]{Right}";
+        return true;
+    }
+    return false;
 }
