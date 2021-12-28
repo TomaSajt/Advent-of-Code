@@ -1,54 +1,38 @@
-﻿var input = File.ReadAllLines("input.txt");
+﻿var input = File.ReadAllLines("input.txt").Select(x => x.ToCharArray()).ToArray();
 int h = input.Length, w = input[0].Length;
-var board = new char[h, w];
-for (int i = 0; i < h; ++i)
-    for (int j = 0; j < w; ++j)
-        board[i, j] = input[i][j];
-int steps = 1;
-while (Iterate()) steps++;
-Console.WriteLine(steps);
-bool Iterate()
+var moved = new int[h, w];
+int m = 0;
+int steps = 0;
+bool a;
+do
 {
-    bool a = false;
-    var old = board;
-    var moved = new bool[h, w];
-    board = new char[h, w];
+    a = false;
+    m++;
     for (int i = 0; i < h; i++)
     {
         for (int j = 0; j < w; j++)
         {
-            if (moved[i, j]) continue;
             int nx = (j + 1) % w;
-            if (old[i, j] != '>' || old[i, nx] != '.')
-            {
-                board[i, j] = old[i, j];
-                continue;
-            }
-            board[i, j] = '.';
-            board[i, nx] = '>';
-            moved[i, nx] = true;
+            if (moved[i, j] == m || moved[i, nx] == m || input[i][j] != '>' || input[i][nx] != '.') continue;
+            input[i][j] = '.';
+            input[i][nx] = '>';
+            moved[i, j] = moved[i, nx] = m;
             a = true;
         }
     }
-    old = board;
-    moved = new bool[h, w];
-    board = new char[h, w];
+    m++;
     for (int i = 0; i < h; i++)
     {
         for (int j = 0; j < w; j++)
         {
-            if (moved[i, j]) continue;
             int ny = (i + 1) % h;
-            if (old[i, j] != 'v' || old[ny, j] != '.')
-            {
-                board[i, j] = old[i, j];
-                continue;
-            }
-            board[i, j] = '.';
-            board[ny, j] = 'v';
-            moved[ny, j] = true;
+            if (moved[i, j] == m || moved[ny, j] == m || input[i][j] != 'v' || input[ny][j] != '.') continue;
+            input[i][j] = '.';
+            input[ny][j] = 'v';
+            moved[i, j] = moved[ny, j] = m;
             a = true;
         }
     }
-    return a;
-}
+    steps++;
+} while (a);
+Console.WriteLine(steps);
