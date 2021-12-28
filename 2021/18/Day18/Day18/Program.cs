@@ -1,60 +1,69 @@
-﻿// *TODO* Actually do this
+﻿var nums = File.ReadAllLines("input.txt");
+Console.WriteLine(Magnitude(nums.Aggregate(Add)));
+int max = -1;
+for (int i = 0; i < nums.Length; i++)
+    for (int j = 0; j < nums.Length; j++)
+        if (i != j) max = Math.Max(max, Magnitude(Add(nums[i], nums[j])));
+Console.WriteLine(max);
 
-
+int Magnitude(string num)
 {
-
-    string num1 = "[[[42012,[4,3]],4],[7,[[8,4],9]]]";
-    string num2 = "[1,1]";
-    Console.WriteLine(Add(num1, num2));
+    if (num.Length == 1 && char.IsDigit(num[0])) return int.Parse(num);
+    int c = 0;
+    for (int i = 1; i < num.Length - 1; i++)
+        if (num[i] == '[') c++;
+        else if (num[i] == ']') c--;
+        else if (c == 0 && num[i] == ',') return 3 * Magnitude(num[1..i]) + 2 * Magnitude(num[(i + 1)..^1]);
+    throw new Exception("This should never happen");
 }
 
 string Add(string num1, string num2)
 {
     string num = $"[{num1},{num2}]";
-    TryExplode(ref num);
+    while (TryExplode(ref num) || TrySplit(ref num)) ;
     return num;
-    /*
-while (true)
-{
-    if (TryExplode(ref num)) continue;
-    if (TrySplit(ref num)) continue;
-    break;
-}*/
-
 }
-bool TryExplode(ref string num)
+
+bool TryExplode(ref string N)
 {
-    int i = 0;
     int count = 0;
-    while (true)
+    for (int i = 0; i < N.Length; i++)
     {
-        if (num[i] == '[') count++;
-        else if (num[i] == ']') count--;
-        if (count == 5)
+        if (N[i] == '[') count++;
+        else if (N[i] == ']') count--;
+        if (count != 5) continue;
+        int j = N.IndexOf(']', i);
+        string L = N[..i], R = N[(j + 1)..];
+        var sp = N[(i + 1)..j].Split(',');
+        int CLV = int.Parse(sp[0]), CRV = int.Parse(sp[1]);
+        int a = Array.FindLastIndex(L.ToCharArray(), char.IsDigit);
+        if (a++ != -1)
         {
-            int l = i, r = num.IndexOf(']', i);
-            var sp = num[(l + 1)..r].Split(',');
-            int leftVal = int.Parse(sp[0]), rightVal = int.Parse(sp[1]);
-            for (int j = l - 1; j >= 0; j--)
-            {
-                if (char.IsDigit(num[j]))
-                {
-                    int k;
-                    for (k = j - 1; k >= 0 && char.IsDigit(num[k]); k--) ;
-                    k++;
-                    int number
-                    Console.WriteLine(num[k..(j+1)]);
-                    break;
-                }
-            }
-            Console.WriteLine(num[l..(r + 1)]);
-            break;
+            int LLI = Array.FindLastIndex(L[..a].ToCharArray(), c => !char.IsDigit(c)) + 1;
+            L = $"{L[..LLI]}{int.Parse(L[LLI..a]) + CLV}{L[a..]}";
         }
-        i++;
+        a = Array.FindIndex(R.ToCharArray(), char.IsDigit);
+        if (a != -1)
+        {
+            int RRI = Array.FindIndex(R.ToCharArray(), a, c => !char.IsDigit(c));
+            R = $"{R[..a]}{int.Parse(R[a..RRI]) + CRV}{R[RRI..]}";
+        }
+        N = $"{L}0{R}";
+        return true;
     }
-    return true;
+    return false;
 }
 bool TrySplit(ref string num)
 {
-    return true;
+    for (int i = 0; i < num.Length - 1; i++)
+    {
+        if (!char.IsDigit(num[i]) || !char.IsDigit(num[i + 1])) continue;
+        int j = i + 1;
+        while (char.IsDigit(num[j])) j++;
+        string Left = num[..i], Right = num[j..];
+        int Value = int.Parse(num[i..j]);
+        num = $"{Left}[{Value / 2},{(Value + 1) / 2}]{Right}";
+        return true;
+    }
+    return false;
 }
