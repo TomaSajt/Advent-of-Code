@@ -1,0 +1,4 @@
+data←⍎⍤1⊢↑⊃⎕NGET'input.txt'
+solve←{+/2</⍺+/⍵}
+1 solve data
+3 solve data
