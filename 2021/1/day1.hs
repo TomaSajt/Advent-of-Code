@@ -1,10 +1,15 @@
-solve1 :: [Int] -> Int
-solve1 x = length . filter (<0) $ zipWith (-) x (tail x)
+import Data.List (tails)
 
-runSolve1 :: String -> IO Int
-runSolve1 = fmap solve1 . getInput
+window :: Int -> [a] -> [[a]]
+window n x = take (length(x) - n + 1) $ map (take n) $ tails x
 
-getInput :: String -> IO [Int]
-getInput = fmap(map read . lines) . readFile
+solve :: [Int] -> Int
+solve x = length . filter (<0) $ zipWith (-) x (tail x)
 
-part1 = runSolve1 "input.txt"
+main :: IO()
+main = do
+    content <- readFile "input.txt"
+    let inp = map read $ lines content
+    print $ solve inp
+    let inp2 = map sum $ window 3 inp
+    print $ solve inp2
