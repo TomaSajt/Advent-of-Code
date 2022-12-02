@@ -1,22 +1,21 @@
 import Data.List (group, sort)
-split :: String -> Char -> [String]
-split [] _ = [""]
-split (c:cs) delim
-    | c == delim = "" : rest
-    | otherwise = (c : head rest) : tail rest
-    where
-        rest = split cs delim
+split :: Eq a => a -> [a] -> [[a]]
+split _ [] = []
+split del str = 
+    let (start, rest) = break (==del) str
+        (_, remain) = span (==del) rest
+     in start : split del remain
 
 sign :: Int -> Int
 sign x = if x>0 then 1 else if x<0 then -1 else 0
 
 readCoords :: String -> (Int, Int)
 readCoords x = (read a, read b)
-    where [a,b] = split x ','
+    where [a,b] = split ',' x
 
 readSegment :: String -> ((Int, Int),(Int, Int))
 readSegment x = (readCoords a, readCoords b) 
-    where [a,_,b] = split x ' '
+    where [a,_,b] = split ' ' x
 
 isAxisAligned :: ((Int, Int),(Int, Int)) -> Bool
 isAxisAligned ((x1,y1),(x2,y2)) = x1==x2||y1==y2
