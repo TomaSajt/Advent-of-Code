@@ -1,0 +1,2 @@
+f←{a b c d←⍵⋄(a≤c)∧d≤b}
++⌿↑({a b c d←⍵⋄(a b c d∨⍥f c d a b),f a b d c}⍎¨∘((~∊∘',-')⊆⊢))¨⊃⎕NGET'input.txt'1
