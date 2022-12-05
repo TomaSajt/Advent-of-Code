@@ -12,21 +12,19 @@ trimFirst :: String -> String
 trimFirst (' ' : rest) = trimFirst rest
 trimFirst str = str
 
-next :: (String -> String) -> Seq String -> (Int, Int, Int) -> Seq String
-next tr stacks (n,a,b) = let st1 = index stacks a
-                             st2 = index stacks b
+next :: ([a] -> [a]) -> Seq [a] -> (Int, Int, Int) -> Seq [a]
+next tr stacks (n,i,j) = let [st1,st2] = map (index stacks) [i,j]
                              st1m = drop n st1
                              st2m = (tr $ take n st1) ++ st2
-                        in update b st2m $ update a st1m stacks
+                        in update i st1m $ update j st2m stacks
 
 readOp :: String -> (Int, Int, Int)
-readOp str = let [_,sn,_,sa,_,sb] = split (==' ') str
-             in (read sn, read sa-1, read sb-1)
+readOp str = let [_,sn,_,si,_,sj] = split (==' ') str
+             in (read sn, read si-1, read sj-1)
 
 main :: IO()
 main = do
-    res <- fmap lines $ readFile "input.txt"
-    let (ist, (_:iops)) = break null res
+    (ist, (_:iops)) <- fmap (break null . lines) $ readFile "input.txt"
     let stsq = fromList . map (trimFirst . ((transpose ist) !!)) $ [1,5..33]
     let ops = map readOp $ iops
     let sol = \tr -> fmap head $ foldl' (next tr) stsq ops
