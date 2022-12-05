@@ -1,0 +1,5 @@
+mat←1⊖(,⍨⍴1↑⍨1∘+)9
+mat[⊂(7 1)]←1
+list←⍎¨(','∘≠⊆⊢)⊃⊃⎕NGET'input.txt'1
+{(⍎⍵⎕NS⍬).⎕CY ⍵}'dfns'
+{⊃+dfns.big/((mat∘((+dfns.big).(×dfns.big)))⍣⍵)(+/list∘=)¨(¯1+⍳9)}¨(80 256)
