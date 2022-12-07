@@ -13,10 +13,11 @@ next :: ([String], Map.Map [String] Int) -> Cmd ->  ([String], Map.Map [String] 
 next (path, sizes) (Cd "/") = ([], sizes)
 next (path, sizes) (Cd "..") = (tail path, sizes)
 next (path, sizes) (Cd dir) = (dir : path, sizes)
-next (path, sizes) (Sz num) = (path, foldl' (flip $ flip (Map.insertWith (+)) num) sizes $ tails path)
+next (path, sizes) (Sz num) = (path, foldl' (\a x -> Map.insertWith (+) x num a) sizes $ tails path)
 
 readCmd :: [String] -> Cmd
-readCmd (x:xs) = if (head x) == 'c' then Cd (drop 3 x) else Sz (sum . map (read . head . words) . filter (('d'/=) . head) $ xs)
+readCmd (('c':x):_) = Cd $ drop 2 x
+readCmd (_:xs) = Sz $ sum . map (read . head . words) . filter (('d'/=) . head) $ xs
 
 main :: IO()
 main = do
