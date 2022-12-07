@@ -11,12 +11,12 @@ data Cmd = Cd String | Sz Int
 
 next :: ([String], Map.Map [String] Int) -> Cmd ->  ([String], Map.Map [String] Int)
 next (path, sizes) (Cd "/") = ([], sizes)
-next (path, sizes) (Cd "..") = (tail path, sizes)
+next (_:xpth, sizes) (Cd "..") = (xpth, sizes)
 next (path, sizes) (Cd dir) = (dir : path, sizes)
 next (path, sizes) (Sz num) = (path, foldl' (\a x -> Map.insertWith (+) x num a) sizes $ tails path)
 
 readCmd :: [String] -> Cmd
-readCmd (('c':x):_) = Cd $ drop 2 x
+readCmd (('c':_:_:x):_) = Cd x
 readCmd (_:xs) = Sz $ sum . map (read . head . words) . filter (('d'/=) . head) $ xs
 
 main :: IO()
