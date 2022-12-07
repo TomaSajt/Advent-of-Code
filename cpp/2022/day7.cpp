@@ -35,9 +35,9 @@ int main() {
     int tot = sizes[""];
     int sp = 70000000 - tot;
     int trg = 30000000;
-    string best;
+    int best = INT_MAX;
     for (auto [k, v] : sizes) {
-        if (sp + v >= trg && sizes[best] > v) best = k;
+        if (sp + v >= trg && best > v) best = v;
     }
-    cout << ftot << '\n' << sizes[best];
+    cout << ftot << '\n' << best;
 }
