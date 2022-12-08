@@ -1,7 +1,12 @@
 hg←⍎¨↑⊃⎕NGET'input.txt'1
-sl←{0>2-/¯1,⌈\⍵}
-a←sl hg
-b←⌽sl⌽hg
-c←⍉sl⍉hg
-d←⍉⌽sl⌽⍉hg
-+/+/a∨b∨c∨d
+s1←{1,2</⌈\⍵}
+s2←{b←⍵⋄{i j←⍵⋄x←⌽j↑b[i;]⋄⊃(¯1+≢x),⍨⍸(⊃x)≤1↓x}¨⍳⍴b}
+a1←s1 hg
+a2←s2 hg
+b1←⌽s1⌽hg
+b2←⌽s2⌽hg
+c1←⍉s1⍉hg
+c2←⍉s2⍉hg
+d1←⍉⌽s1⌽⍉hg
+d2←⍉⌽s2⌽⍉hg
+(+/+/a1∨b1∨c1∨d1)(⌈/⌈/a2×b2×c2×d2)
