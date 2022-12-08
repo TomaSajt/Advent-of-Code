@@ -1,0 +1,7 @@
+hg←⍎¨↑⊃⎕NGET'input.txt'1
+sl←{0>2-/¯1,⌈\⍵}
+a←sl hg
+b←⌽sl⌽hg
+c←⍉sl⍉hg
+d←⍉⌽sl⌽⍉hg
++/+/a∨b∨c∨d
