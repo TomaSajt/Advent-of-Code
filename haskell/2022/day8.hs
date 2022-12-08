@@ -24,9 +24,9 @@ main = do
     let b1 = transpose $ islvis $ transpose $ brd
     let c1 = map reverse $ islvis $ map reverse $ brd
     let d1 = reverse . transpose $ islvis $ transpose . reverse $ brd
-    print $ sum . map (length . filter id) $ foldr1 (zipWith $ zipWith (||)) [a1, b1, c1, d1]
+    print $ length . filter id . foldr1 (zipWith (||)) $ map (id=<<) [a1, b1, c1, d1]
     let a2 = lviews brd
     let b2 = transpose $ lviews $ transpose $ brd
     let c2 = map reverse $ lviews $ map reverse $ brd
     let d2 = reverse . transpose $ lviews $ transpose . reverse $ brd
-    print $ maximum . map maximum $ foldr1 (zipWith $ zipWith (*)) [a2, b2, c2, d2]
+    print $ maximum . foldr1 (zipWith (*)) $ map (id=<<) [a2, b2, c2, d2]
