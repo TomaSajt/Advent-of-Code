@@ -1,4 +1,4 @@
-import Data.List (unfoldr, sort, nub)
+import Data.List (unfoldr, sort, nub, intercalate)
 import Data.Char (isDigit)
 import Data.Maybe (catMaybes)
 
@@ -32,3 +32,24 @@ main = do
     let cLen = sum . map (\(l,r)->r-l+1) $ comb
     let overlappingObjs = filter (\(x,y) -> y==n && any (inInterval x) comb) $ [nub $ map snd inp, map fst inp]>>=id
     print $ cLen - length overlappingObjs
+
+
+
+--  generates Desmos code you have to paste into Desmos
+--  after pasting, you have to zoom out, until you see the area edges
+--  there is an `a` slider, which, when decreased, expands the areas.
+--  you have to look for square shaped uncovered areas
+--  take a note of roughly where they are and shrink a to 0
+--  take a look at the noted locations, and if you find a hole, that's 1x1, that position is your beacon
+--  calculating the final result is left as an exercise for the reader
+
+    putStrLn ""
+    putStrLn "d\\left(P,Q\\right)=\\left|P.x-\\operatorname{round}\\left(Q.x\\right)\\right|+\\left|P.y-\\operatorname{round}\\left(Q.y\\right)\\right|+a"
+    putStrLn "a=100000"
+    putStr "X=\\left["
+    putStr $ intercalate "," (map ( \((sx,sy),(bx,by)) -> "\\left(" ++ show sx ++ "," ++ show sy ++ "\\right)" ) inp) 
+    putStrLn "\\right]"
+    putStr "D=\\left["
+    putStr $ intercalate "," (map (show . taxicab) inp) 
+    putStrLn "\\right]"
+    putStrLn "d\\left(X,\\left(x,y\\right)\\right)\\le D+0.001"
