@@ -51,5 +51,5 @@ int main() {
     cout << root.get_value(mmap) << endl;
     root.op = '=';
     root.calc_humn_dep(mmap);
-    cout << mmap["root"].display(mmap);
+    cout << root.display(mmap);
 }
