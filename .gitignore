@@ -2,5 +2,7 @@
 bin
 obj
 .vscode
+.ccls-cache
 *.exe
+*.out
 input.txt
