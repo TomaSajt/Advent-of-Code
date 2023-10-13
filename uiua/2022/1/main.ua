@@ -1,10 +1,8 @@
-input ← &fras "input.txt"
-splitd ← ∵(|1 □↘¯1!)⊜□⊂1¬⌕"\n\n".
-split ← ⊜□≠@\n.
+Input ← &fras "input.txt"
+Splitd ← ∵(□↘¯1⊔)⊜□⊂1¬⌕"\n\n".
+Split ← ⊜□≠@\n.
 
-⇌⊏⌂.∵(|1 /+ ∵(|1 parse!) split!) splitd input
+∵(/+ ∵(parse⊔) Split⊔) Splitd Input
+⇌⊏⍏.
 
-.
-⊢
-:
-/+↙3
+⊃(/+↙3)(⊢)
