@@ -1,11 +1,7 @@
-inp ← ⊜□≠@\n. &fras "input.txt"
+Input ← ⊜□≠@\n. &fras "input.txt"
 
-U ← ▽ ∺∊ ∶⊙.
+U ← ▽ ∺'∊∶ ⊙.
 
-score ← ?'-@`'-@&≥@a.
+Score ← ?'-@`'-@&≥@a.
 
-∵(|1 ⊢ U⊃↘↙ ÷2 ⧻ . !)inp
-
-≡(⊢/(|2 U⊙!!)) ↯¯1_3 inp
-
-∩(/+ ∵score)
+∩(/+ ∵Score)⊃(≡(⊢/(U⊙⊔⊔)) ↯¯1_3)(∵(⊢ U⊃↘↙ ÷2 ⧻ . ⊔)) Input
