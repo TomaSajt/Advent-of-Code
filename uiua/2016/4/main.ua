@@ -4,15 +4,28 @@ SplitLines ← ≡(□⊜□ ¬ ∊∶ "[]-" .⊔) Lines
 
 Ids ← ≡(parse ⊔⊡¯2⊔) SplitLines
 Checksums ← ≡(⊔⊡ ¯1⊔) SplitLines
-Names ← ≡(□/(⊂⊙⊔⊔)↘¯2⊔) SplitLines
+SplitNames ← ≡(□↘¯2⊔) SplitLines
+Names ← ≡(□/(⊂⊙⊔⊔)⊔) SplitNames
 
-Name ← ⊔⊢ Names
-Checksum ← ⊢ Checksums
-Letters ← ⊝ Name
-LetterCounts ← ∺(/+=) Name Letters
+NameToAcceptedLetters ← ▽≥ ⊡⊡4⍖.. ∺(/+=) ⊙. ∶⊝.
 
-MinLetterCount ← ⊡⊡4⍖.LetterCounts
+LineAcceptedLetters ← ≡(□ NameToAcceptedLetters ⊔) Names
 
-AcceptedLetters ← ▽≥ MinLetterCount LetterCounts Letters
+RealMask ← ≡(/↧ ∺(∊∶⊔)) LineAcceptedLetters Checksums
 
-/↧ ∺(∊∶) AcceptedLetters Checksum
+RealIds ← ▽ RealMask Ids
+RealSplitNames ← ▽ RealMask SplitNames
+
+/+ RealIds
+
+ShiftChar ← +@a◿ 26 +-@a∶
+ShiftWord ← ∺(ShiftChar)
+ShiftWords ← ∺(□ ShiftWord ⊙⊔)
+
+Join ← ↘1⊔/(□⊂⊙⊔⊔)∺(□⊂⊙⊔)
+
+DecipheredNames ← ≡(□ Join @\s ShiftWords ⊙⊔) RealIds RealSplitNames
+
+Contains ← ?(/↥⌕)(0;;)≥⧻,⧻,
+
+⊢ ▽ ∵(Contains "northpole object storage" ⊔) DecipheredNames RealIds
