@@ -1,8 +1,5 @@
 Input ← &fras "input.txt"
-Splitd ← ∵(□↘¯1⊔)⊜□⊂1¬⌕"\n\n".
-Split ← ⊜□≠@\n.
 
-∵(/+ ∵(parse⊔) Split⊔) Splitd Input
-⇌⊏⍏.
+⇌⊏⍏. ⊜(/+ ⊜(parse) ≠@\n. ↘¯1) ¬⊂0⌕"\n\n". Input
 
 ⊃(/+↙3)(⊢)
