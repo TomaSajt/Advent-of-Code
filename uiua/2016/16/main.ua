@@ -8,4 +8,4 @@ GetNextB ← ≡(/=)↯ ¯1_2
 
 +@0⍥(⎋=1 ◿ 2⧻. GetNextB)∞ DiskContent
 
-# 2. part takes too long
+# 2nd part takes too long

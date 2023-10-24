@@ -1,6 +1,3 @@
-Lines ← ⊜∘ ≠@\n. &fras "input.txt"
+⍉ ⊜∘ ≠@\n. &fras "input.txt"
 
-MostCommon ← ⊏⊃(⊢⍖⍘⊚⊛)⊝
-LeastCommon ← ⊏⊃(⊢⍏⍘⊚⊛)⊝
-
-⊃(≡LeastCommon)(≡MostCommon) ⍉Lines
+∩&p ⍘⊟ ⊠(⊏⊢⍖×⊙(⍘⊚⊛∶⊝.))¯1_1

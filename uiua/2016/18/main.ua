@@ -1,6 +1,3 @@
-FirstSafeTiles ← =@.▽ ∊ ∶"^." .&fras "input.txt"
+=@.▽ ∊ ∶"^." .&fras "input.txt"
 
-NextRow ← ≡(=⊃(⊢)(⊢⇌)) ◫3 ⊂1⊂∶1
-
-Solve ← ⊔⊢∧(⊂∩□ ⊙NextRow +⊙∶/+.⊔⊢⇌⊙⊢.;∶){0 FirstSafeTiles}⇡
-∩(Solve) 400000 40
+∩(⊙;⍥(⊙(≡(/=⊏¯1_0) ◫3 ⊂1⊂∶1)+/+,)∶0) 400000,40

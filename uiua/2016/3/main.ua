@@ -1,7 +1,4 @@
-Nums ← ⊜(parse) ¬∊∶" \n" . &fras "input.txt"
-CheckTri ← >⊃(⊢⇌)(/+↙2)⊏⍏.
+⊜parse ¬∊∶" \n" . &fras "input.txt"
 
-TrisA ← ↯ ¯1_3 Nums
-TrisB ← /⊂⍚2⍉ ↯ ¯1_3_3 Nums
-
-∩(/+≡(CheckTri)) TrisB TrisA
+⊃(≑2⍉)∘ ↯ ¯1_3_3
+∩(/+≡(>⊃(⊢⇌)(/+↙2)⊏⍏.)/⊂)
