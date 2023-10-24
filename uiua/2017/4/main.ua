@@ -1,4 +1,4 @@
-Input ← ∵(□⊜(□)≠@\s.⊔)⊜(□)≠@\n. &fras "input.txt"
-SortedInput ← ∵(□∵(□⊏⍏.⊔)⊔)Input
+⊜(□⊜□≠@\s.)≠@\n. &fras "input.txt"
+∵(□∵(□⊏⍏.⊔)⊔).
 
-∩(/+∵(=∩⧻⊝.⊔))SortedInput Input
+∩(/+∵(=∩⧻⊝.⊔))

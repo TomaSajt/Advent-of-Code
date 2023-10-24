@@ -1,5 +1,3 @@
-Input ← ∵(parse) ▽ ≠@\n.&fras "input.txt"
+∵parse ▽ ≠@\n.&fras "input.txt"
 
-/+▽≡(/=)◫2⊂∶⊢..Input
-
-/+▽⊃(/=)(/+) ↯2_¯1 Input
+⊃(×2/+×⊃(/=)⊢ ↯2_¯1)(/+×/=⍉◫2 ⊂⊢..)
