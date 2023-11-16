@@ -1,2 +1,3 @@
-⊜(/+ ⊜parse ≠@\n. ↘¯1) ¬⌕"\n\n". ▽ ≠@\r. &fras "input.txt"
-⊃(/+↙3)⊢ ⇌⊏⍏.
+⊜(/+ ⊜parse ≠@\n.) ¬⌕"\n\n". ▽≠@\r. &fras "input.txt"
+⊏⍖.
+⊃(/+↙3)⊢
