@@ -1,3 +1,5 @@
-⊜(⊜□ ¬∊∶"-: ".) ≠@\n. &fras "input.txt"
-
-⊃(/+≡(=1/+=⊏-1 ⊃(∵parse↙)(∶⊢∩⊔ ⍘⊟↘)2))(/+≡(↧⊃(≥⊙⋅∘)(≤⊙∘) ⊃(/+=⊢ ∩⊔⍘⊟ ↘)(⍘⊟ ∵parse↙)2))
+⊜(⊜□ ¬∊:"-:\s".) ¬∊:"\n\r". &fras "input.txt"
+Prep ← |1.3 ⊙∩parse=⊙⊢∩∩⊔/∘
+SolveA ← ↧⊃(⟜≤|≥)/+Prep
+SolveB ← ≠⍘⊟⊏-1:⊙⊟Prep
+⊃(/+≡SolveB|/+≡SolveA)

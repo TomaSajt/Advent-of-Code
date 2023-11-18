@@ -1,3 +1,3 @@
-▽ ¬∊∶"\n\r". &fras "input.txt"
+▽ ¬∊:"\n\r". &fras "input.txt"
 
 ∩(+⊗1=≡(⧻⊝)⊃◫.)14,4

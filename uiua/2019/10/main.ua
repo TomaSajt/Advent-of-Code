@@ -1,10 +1,5 @@
-=@#⊜∘ ≠@\n. &fras "input.txt"
+Poses ← ⊚=@# ⊜∘ ¬∊:"\n\r". &fras "input.txt"
 
-⍉⊟ ⊃(⌊÷)◿ ⊃(⊢⇌△)(⊚♭) # Calc positions (2d where)
+DegsFromCenterAndPoses ← ≡(◿τ-η¯∠⍘⊟)▽ ≡(¬≍0_0). ≡-⌀
 
-≡(⧻⊝).≡(◿τ+η≡(∠⍘⊟)).≡(▽¬≡(≍0_0).)⊠-..
-
-⊢⍖
-⊃(⊡⊙⊙⋅;)(≐+⊃(⊡⊙⋅⊙;)(⊡⊙⋅⋅∘))
-
-⊃(⊙;)(⊏⍏)
+/↥≡(⧻⊝DegsFromCenterAndPoses) Poses ⌀Poses

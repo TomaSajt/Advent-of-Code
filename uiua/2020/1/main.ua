@@ -1,2 +1,2 @@
-⊜parse ¬∊∶"\n\r". &fras "input.txt"
+⊜parse ¬∊:"\n\r". &fras "input.txt"
 ∩(/×⊏⊢⊚=2020/⊞+ ↯⊙.) 3,2
