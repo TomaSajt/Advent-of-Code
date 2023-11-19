@@ -1,9 +1,14 @@
-↯ ¯1_3 ⊜parse∊∶⊂@-+@0⇡10.&fras "input.txt"
+↯¯1_3 ⊜parse ∊: ⊂@- +@0⇡10 . &fras "input.txt"
 
-Next ← ⊃⊙;+ +⊙(≡/+⊠'±-..)
-GetRepeats ← |1 ⊙⋅⋅⋅; ⍥(⎋∶⊙⊃(↧ ⊃(≍⊙⋅⊙;)(≍⋅⊙⋅∘))(⊙⊙⊙∘) +1⊙Next)∞ 0 ,,↯∶0△.
+Next ← |2.2 ⊃∘+ +⊙(≡/+ ⊠(±-)..)
 
-GCD ← |2 ;⍥(⊃◿⊙; ⎋=0.)∞
-LCM ← ÷⊃GCD×
+GCD ← ;⍢(⊃◿∘)(≠0)
+LCM ← ÷⊃(GCD|×)
 
-⊃(/LCM ≡GetRepeats ⍉)(/+×∩(≡/+⌵)⍥Next 1000  ↯∶0△.)
+# 5 parameters: iter_cnt current_pos currect_vel orig_pos orig_vel 
+GetRepeats ← |1 ⊙⋅⋅⋅; ⍢(+1 ⊙Next)(¬↧⋅⊃(⟜≍|⋅⟜≍)) 1 Next ,, ↯:0△ .
+
+SolveA ← /+× ∩(≡/+⌵) ⍥Next 1000 ↯:0△.
+SolveB ← /LCM ≡GetRepeats ⍉
+
+⊃(SolveB|SolveA)
