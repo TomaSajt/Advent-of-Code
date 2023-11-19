@@ -1,5 +1,10 @@
 Poses ← ⊚=@# ⊜∘ ¬∊:"\n\r". &fras "input.txt"
 
-DegsFromCenterAndPoses ← ≡(◿τ-η¯∠⍘⊟)▽ ≡(¬≍0_0). ≡-⌀
+Ang ← ◿τ+η∠⍘⊟
 
-/↥≡(⧻⊝DegsFromCenterAndPoses) Poses ⌀Poses
+⊃(⟜⊡|⟜⟜⊡|⊡) ⊢⍖ . ≡(⧻⊝ ≡Ang) . ≡(▽¬≡(≍0_0).) ⊠- ..Poses
+
+⊕□ ⊛⊃(∘|≡(⊂⊂)) ≡(⊃(Ang|/+⌵)).
+⊐/⊂ ⊐∵(≡⊂ ⍏⊡1⍉.)
+
++×100 :⍘⊟+↙¯2 ⊡⊡199⍏.
