@@ -1,19 +1,7 @@
-Inp ← ↯ ¯1_2 ⊜(parse) ¬∊∶"\n, " . &fras "input.txt"
+MakeArea ← |2 +⊙⍉∩(⌵-)⊙: ∩⍉ ∩↯ ⊃(⋅∘|⇡|∘|⋅⇡) ∩⍘⊟
+GetMaxPos ← (⋅∞|∘) ⊃(=1⧻|⊢)⊚ =/↧.
+MakeDenyList ← ⊝⊂∞⊂⊂⊂⊃(⊢⇌⍉|⊢⍉|⊢⇌|⊢)
 
-Size ← 500
-Offset ← 50_50
+≡MakeArea ¤+1/↥. ↯¯1_2 ⊜parse ¬∊:"\n\r\s," . &fras "input.txt"
 
-Inp ← ∺+Offset Inp
-
-MakeArea ← +∩(⌵-) ⊙∶ ⍉.↯Size⇡Size
-
-Areas ← ≡(MakeArea ⊃(⊢)(⊢ ⇌)) Inp
-⍉≡⍉ Areas
-
-⍚(1)(?(⊢)(¯1;)=1 ⧻.⊚ =/↧.)
-
-.
-⊝ ⊂¯1⊂⊂⊂⊃⊃⊃(⊢⇌⍉)(⊢⍉)(⊢⇌)(⊢)
-/↥ ⍘⊚ ▽ ¬∊,⊙♭
-
-/+/+<10000/+Areas
+⊃(/+/+<10000/+|/↥ ⍘⊚ ▽⊃(¬∊|∘) ⊃(♭|MakeDenyList) ≡≡GetMaxPos ⍉≡⍉)
