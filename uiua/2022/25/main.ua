@@ -5,4 +5,4 @@ Thingify ← ⊏:"=-012"+2 (⊂|;)=0.;⍢(⊃(↘¯1|⊙⊂⊃(∘|-×5)>2.+⊢�
 
 ⊜□ ¬∊:"\n\r". &fras "input.txt"
 
-Thingify ToBaseFive/+⊐∵UnthingifyToBaseTen Inp
+Thingify ToBaseFive/+⊐∵UnthingifyToBaseTen
