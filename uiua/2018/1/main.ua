@@ -1,4 +1,4 @@
-Nums ← ⊜(parse) ≠@\n. &fras "input.txt"
+F ← ⊗0⬚∞=⊝.
 
-/+Nums
-⍥(⎋ ⊙?(⊡)(⋅⋅∘). ≠,⧻∶ ⊗0 ⬚∞= ⊃⊝∘ . .\+. ⊂.)∞ Nums
+⊜parse ¬∊:"\n\r". &fras "input.txt"
+⊃(⊡F.\+⍢(⊂.)(=⊃⧻F\+))(/+)

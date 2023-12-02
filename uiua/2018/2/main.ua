@@ -1,7 +1,5 @@
-Inp ← ⊜∘ ≠@\n. &fras "input.txt"
+SolveA ← /×/+≡(/↥⊞=:2_3⍘⊚⊛)
+SolveB ← ▽⊃/=⊢ ⊏⊢⊚⊠(=1/+≠)..
 
-SolveA ← /×/+≡(/↥⊞=∶2_3⍘⊚⊛)
-
-SolveB ← ▽ ⊃(/=)(⊢) ⊏⊔⊢ ▽∶∩♭ ⍚1□⇡△. ⊠(=1/+≠)..
-
-⊃(SolveB)(SolveA) Inp
+⊜∘ ¬∊:"\n\r". &fras "input.txt"
+⊃(SolveB|SolveA)
