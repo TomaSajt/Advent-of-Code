@@ -1,13 +1,13 @@
-NL ← ↯0_2[]
-MkIntv ← -⇡2\+
-Gaps ← ≡(⊂:0)▽≥0≡/-.⍉⇌+¯1_1⊟⊓(⊂:∞|⊂¯∞)⍘⊟↙2⍉
-PL ← ⊜parse≠@\s.
-IntersectShift ← ↙⊃(≥|+¤⊟)⊃(↥⊙⋅∘|↧⋅⊙⋅∘)∩⍘⊟⊃(↙2⊙∘|⊢⇌)
-IntersectShiftMultiInner ← ∧(⊂IntersectShift)⊙¤⊙⊙NL
-IntersectShiftMulti ← ∧(⊂IntersectShiftMultiInner)¤⊙⊙NL
-Solve ← /↧♭∧(IntersectShiftMulti⊔)
+PL ← |1 ⊜parse≠@\s.
+# makes missing intervals in sorted interval list
+Gaps ← |1 ≡(⊂:0) ▽≡/>. ⍉⊟⊓(⊂¯∞|⊂:∞) :⍘⊟↙2⍉
+# returns "optional" intersection (singleton or empty list) 
+TryIntersectShift ← |2 ↯/>. +⊟⊃(↥⊙⋅∘|↧⋅⊙⋅∘) ∩⍘⊟⊃(↙2⊙∘|⊢⇌)
+# almost ☇1⊠(TryIntersectShift) but we need to use list joining to handle optionals
+IntersectShiftCombine ← |2 ∧(∧(⊂TryIntersectShift)⊙¤)¤ ⊙⊙(↯0_2[])
+Solve ← |2 /↧⊢⍉∧(IntersectShiftCombine⊔)
 
 ▽≠@\r. &fras "input.txt"
-⊃(↘1|PL↘7⊔⊢)⊜□¬⌕"\n\n".
-≡(□⊂Gaps.⊏⍏.≡(⊂⊃(MkIntv↘1|/-⇌↙2)PL⊔)↘1⊜□≠@\n.⊔)
-∩Solve,:⊙⊃(≡MkIntv↯¯1_2|≡[.])
+⊃(↘1|PL↘7⊔⊢) ⊜□¬⌕"\n\n".
+≡(□ ⊂Gaps. ⊏⍏. ≡(⊂⊃(\+↘1|/-⇌↙2)PL⊔) ↘1⊜□≠@\n. ⊔)
+∩Solve ,: ⊙⊃(≡\+↯¯1_2|≡[⊃(∘|+1)])

@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
-using intv = pair<ll, ll>;
+using intv = pair<ll, ll>; // [l;r)
 
 fstream inp("input.txt");
 vector<vector<pair<pair<ll, ll>, ll>>> mappings(7);
@@ -23,7 +23,7 @@ vector<intv> map_intervals(vector<intv>& intervals,
     for (pair<intv, ll>& sub_mapping : mapping) {
       auto& [sm_interval, offset] = sub_mapping;
       intv res = {max(interval.first, sm_interval.first) + offset, min(interval.second, sm_interval.second) + offset};
-      if (res.first > res.second) continue;
+      if (res.first >= res.second) continue;
       result.push_back(res);
     }
   }
@@ -40,8 +40,8 @@ int main() {
   vector<ll> first_nums = parse_line();
 
   vector<intv> part1, part2;
-  for (ll& x : first_nums) part1.push_back({x, x});
-  for (ll i = 0; i < first_nums.size(); i += 2) part2.push_back({first_nums[i], first_nums[i] + first_nums[i + 1] - 1});
+  for (ll& x : first_nums) part1.push_back({x, x + 1});
+  for (ll i = 0; i < first_nums.size(); i += 2) part2.push_back({first_nums[i], first_nums[i] + first_nums[i + 1]});
 
   parse_line();
   for (auto& mapping : mappings) {
@@ -49,15 +49,15 @@ int main() {
     while (true) {
       vector<ll> nums = parse_line();
       if (nums.size() == 0) break;
-      mapping.push_back({{nums[1], nums[1] + nums[2] - 1}, nums[0] - nums[1]}); // {{l, r}, offset}
+      mapping.push_back({{nums[1], nums[1] + nums[2]}, nums[0] - nums[1]}); // {{l, r}, offset}
     }
     sort(mapping.begin(), mapping.end());
     // Fill in unmapped regions
     ll sz = mapping.size();
     for (ll i = 0; i <= sz; i++) {
-      ll l = i == 0 ? LLONG_MIN : mapping[i - 1].first.second + 1;
-      ll r = i == sz ? LLONG_MAX : mapping[i].first.first - 1;
-      if (l > r) continue;
+      ll l = i == 0 ? LLONG_MIN : mapping[i - 1].first.second;
+      ll r = i == sz ? LLONG_MAX : mapping[i].first.first;
+      if (l >= r) continue;
       mapping.push_back({{l, r}, 0});
     }
   }
