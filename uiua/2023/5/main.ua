@@ -1,4 +1,4 @@
-PL ← |1 ⊜parse≠@\s.
+PL ← |1 ⊜⋕≠@\s.
 # makes missing intervals in sorted interval list
 Gaps ← |1 ≡(⊂:0) ▽≡/>. ⍉⊟⊓(⊂¯∞|⊂:∞) :⍘⊟↙2⍉
 # returns "optional" intersection (singleton or empty list) 

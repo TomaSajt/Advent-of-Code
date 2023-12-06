@@ -16,7 +16,7 @@ ChkWin ← /↥♭¬∵(∊:⊂@.+@0⇡10)
 
 # input: window
 # output: number
-WinVal ← parse↘1↘¯1⊡1
+WinVal ← ⋕↘1↘¯1⊡1
 
 # Read input file
 &fras "input.txt"
