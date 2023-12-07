@@ -1,7 +1,6 @@
-CheckA ← ↥∩↧⊃(⋅⟜≤|⟜≥|⋅⟜≥|⟜≤)
-CheckB ← ↧⊃(⟜⟜≥|⋅≤)
+CheckA ← ↥⊃(↧⊓≥≤|↧⊓≤≥)⊙:
+CheckB ← ↧⊓≥≤⊙:⊙⊙:
 
-↯¯1_4 ⊜parse ¬∊:"-,\n". &fras "input.txt"
+↯¯1_4 ⊜⋕ ¬∊:"-,\n\r". &fras "input.txt"
 
-≡(|1 ⊟⊃(CheckB|CheckA) /∘⇌)
-⍘⊟/+
+∩/+ ≡(⊃(CheckB|CheckA)°[⊙⊙⊙∘])
