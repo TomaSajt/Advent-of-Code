@@ -1,3 +1,3 @@
-⊜parse ¬∊:"\n\r". &fras "input.txt"
+⊜⋕ ¬∊:"\n\r". &fras "input.txt"
 
 ∩(/+≡/>◫2≡/+◫)3,1
