@@ -8,7 +8,7 @@ MkWinBB ← ⊟∩⊟⊃(-1;;|-|+1;;|+1;)
 
 # inputs: BB, pos
 # output: does BB contain pos
-IsInBB ← /↧⊂⊃(≥⊙⋅∘)(≤⋅⊙∘)⍘⊟
+IsInBB ← /↧⊂⊃(≥⊙⋅∘)(≤⋅⊙∘)°⊟
 
 # input: window
 # output: is part number's
@@ -37,7 +37,7 @@ WinVal ← ⋕↘1↘¯1⊡1
 
 # From last 2 lists make 3 lists:
 # number lengths, number end positions, number rows
-⊃(▽∩♭|:≡⍘⊟⊚)
+⊃(▽∩♭|:≡°⊟⊚)
 
 # From last 4 lists make 4 lists: 
 # bounding boxes, positions of `*`, mask of part number-ness, numbers
