@@ -1,7 +1,7 @@
-MakeArea ← |2 +⊙⍉∩(⌵-)⊙: ∩⍉ ∩↯ ⊃(⋅∘|⇡|∘|⋅⇡) ∩⍘⊟
-GetMaxPos ← (⋅∞|∘) ⊃(=1⧻|⊢)⊚ =/↧.
-MakeDenyList ← ⊝⊂∞⊂⊂⊂⊃(⊢⇌⍉|⊢⍉|⊢⇌|⊢)
+GetMaxInd ← (⋅∞|⊢) =1⧻. ⊚=/↧.
+MkBad ← ⊝∧(⊂⊢⍥(⍉⇌))⇡4¤:¤∞
 
-≡MakeArea ¤+1/↥. ↯¯1_2 ⊜parse ¬∊:"\n\r\s," . &fras "input.txt"
-
-⊃(/+/+<10000/+|/↥ ⍘⊚ ▽⊃(¬∊|∘) ⊃(♭|MakeDenyList) ≡≡GetMaxPos ⍉≡⍉)
+&fras "input.txt"
+↯¯1_2 ⊜⋕ ¬∊:"\n\r\s,".
+≡(/+⌵-)¤⊟⍉∩(↯⊙⇡)⊙.,°⊟+1/↥.
+⊃(/+♭<10000/+|/↥ °⊚ ▽⊃(¬∊|∘) ⊃(♭|MkBad) ≡≡GetMaxInd ⍉≡⍉)

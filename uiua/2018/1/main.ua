@@ -1,4 +1,5 @@
 F ← ⊗0⬚∞=⊝.
 
-⊜parse ¬∊:"\n\r". &fras "input.txt"
+&fras "input.txt"
+⊜⋕ ¬∊:"\n\r".
 ⊃(⊡F.\+⍢(⊂.)(=⊃⧻F\+))(/+)
