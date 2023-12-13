@@ -1,9 +1,7 @@
-Chk ← ≍ # For part 1
-# Chk ← =1/+♭≠ # For part 2
-
-GetPos ← +1⊚≡(Chk⇌⊃↙↘⊃(∘|↙×2))⊃(+1⇡⌊÷2⧻|¤)
-GetPosFR ← ⊂⊙-∩GetPos⊃(∘|⇌|⧻)
+GetPos! ← +1⊚≡(^2⇌⊃↙↘⊃(∘|↙×2))⊃(+1⇡⌊÷2⧻|¤)
+GetPosFR! ← ⊂⊙-∩GetPos!^2⊃(∘|⇌|⧻)
+Solve! ← +×100:∩/+ ∧(∩⊂⊙: ∩GetPosFR!^2⍉. °□) ⊙[]⊙[]
 
 ▽≠@\r. &fras "input.txt"
 ⊜(□⊜∘≠@\n.)¬⌕"\n\n".
-+×100:∩/+ ∧(∩⊂⊙: ∩GetPosFR⍉. °□) ⊙[]⊙[]
+⊃(Solve!(=1/+♭≠)|Solve!≍)
