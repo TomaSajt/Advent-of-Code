@@ -1,7 +1,7 @@
-InitialState ← ⊜(parse)≠@\n .&fras "input.txt"
+⊜⋕≠@\n .&fras "input.txt"
 
-Next! ← ⊙(⍜⊡(^1)) +⊡,⊙., ⊙⊙(+1)
+Next! ← ⊙⍜⊡(^!) +⊡,⊙.,
+Solve! ← ◌◌⍢(Next!(^!)⊙⊙(+1))(↧⊃(>⊙⧻|≥0)) 0⊙0
 
-# currently repeat in a custom modifier is broken, wait for next version
-;;⍥(⎋ ↥ ⊃(≤⊙⧻)(<0⊙;),,Next!(+1))∞ 0 InitialState 0
-;;⍥(⎋ ↥ ⊃(≤⊙⧻)(<0⊙;),,Next!(?-+≥3,1))∞ 0 InitialState 0
+&pSolve!(+1).
+Solve!(++1×¯2≥3.) # takes a loong time, (or is broken)
