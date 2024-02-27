@@ -1,16 +1,10 @@
-Screen ← ↯6_50 0
-
 SetRect ← ⍜↙(↥1)
 
-RotRow ← ⊂⊂⊃⊃(↙)(↻¯∶⊡)(↘ +1) ⊙∶ ⊃(⊡0)(⊡1)
+RotRow ← ≡↻⊃(¯×⊙(=⇡⧻:)|⋅⋅∘) :°⊟
 RotCol ← ⍉RotRow⊙⍉
 
-Lines ← ⊜□ ≠@\n.&fras "input.txt"
+ApplyLine ← ((RotCol|RotRow)⊃(=@r⊡7|⊜⋕∊:+⇡10@0.)|SetRect⇌⊜⋕≠@x.↘5)≍"re"↙2.
 
-ApplyLine ← ?(SetRect ⇌⊜(parse)≠@x.↘ 5)(?(RotRow)(RotCol)=@r⊡7∶ ⊜(parse) ∊∶+⇡10@0..) ≅"re"↙2.
-
-FinalScreen ← ∧(ApplyLine ⊔∶) Screen Lines
-
-/+/+FinalScreen
-
-⊏ FinalScreen " #"
+⊜□ ≠@\n.&fras "input.txt"
+∧(ApplyLine °□) ⊙(↯6_50 0)
+⊃(⊏:" #"|/+/+)
