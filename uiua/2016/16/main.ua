@@ -6,4 +6,5 @@ Len ← 272
 
 +@0⍢(≡(/=)↯∞_2|=0◿2⧻)
 
+&p
 # 2nd part takes too long

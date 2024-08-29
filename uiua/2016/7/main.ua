@@ -23,4 +23,6 @@ NonHyperSeqABALists ← ⍚(/◇⊂⍚ListABAs) NonHyperSeqLists
 HyperSeqABALists ← ⍚(/◇⊂⍚ListABAs) HyperSeqLists
 HyperSeqBABLists ← ⍚≡(GetBABPair)HyperSeqABALists
 
-/+ ≡(Any ◇∊) NonHyperSeqABALists HyperSeqBABLists
+/+ ≡(Any ◇∈) HyperSeqBABLists NonHyperSeqABALists
+
+∩&p
