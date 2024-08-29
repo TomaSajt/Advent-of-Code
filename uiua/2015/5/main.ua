@@ -9,3 +9,5 @@ CheckBB ← /↥≡(/=↘1↻1)◫3
 
 ≡⊃(↧⊃(CheckBB|CheckBA))(↧↧⊃(CheckAC|CheckAB|CheckAA))
 ∩/+
+
+∩&p
