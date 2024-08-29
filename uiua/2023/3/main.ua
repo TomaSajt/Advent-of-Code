@@ -12,7 +12,7 @@ IsInBB ← /↧⊂⊃(≥⊙⋅∘)(≤⋅⊙∘)°⊟
 
 # input: window
 # output: is part number's
-ChkWin ← /↥♭¬∵(∊:⊂@.+@0⇡10)
+ChkWin ← /↥♭¬∵(∈⊂@.+@0⇡10)
 
 # input: window
 # output: number
@@ -22,14 +22,14 @@ WinVal ← ⋕↘1↘¯1⊡1
 &fras "input.txt"
 
 # Split lines
-⊜∘ ¬∊:"\r\n".
+⊜∘ ¬∈"\r\n".
 
 # Pad input with `.`
 ⍥(⍉⇌≡⊂¤@.)4
 
 # From padded input make 2 matrices
 # mask of digits, copy of the padded input
-∊:⇡10-@0.
+∈⇡10-@0.
 
 # From last list make 2 matrices:
 # mask of number ends, number of digits of current number to the left (including itself)

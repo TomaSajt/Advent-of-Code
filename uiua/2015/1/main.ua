@@ -1,3 +1,3 @@
-▽ ¬∊:"\n\r". &fras "input.txt"
+▽ ¬mem"\n\r". &fras "input.txt"
 \+-1×2=@(
 ⊃(+1⊗¯1|⊢⇌)

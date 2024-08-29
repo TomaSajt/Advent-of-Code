@@ -10,5 +10,5 @@ SolveA ← /+× ∩(≡/+⌵) ⍥Next 1000 ↯:0△.
 SolveB ← /LCM ≡GetRepeats ⍉
 
 &fras "input.txt"
-↯∞_3 ⊜⋕ ∊:⊂@-+@0⇡10.
+↯∞_3 ⊜⋕ ∈⊂@-+@0⇡10.
 ⊃(SolveB|SolveA)

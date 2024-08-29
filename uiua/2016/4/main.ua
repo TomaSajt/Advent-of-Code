@@ -1,4 +1,4 @@
-SplitLines ← ⊜(□⊜□ ¬∊:"[]-" .) ¬∊:"\n\r". &fras "input.txt"
+SplitLines ← ⊜(□⊜□ ¬∈"[]-" .) ¬∈"\n\r". &fras "input.txt"
 
 Ids ← ≡(⋕°□⊡¯2°□) SplitLines
 Checksums ← ≡(°□⊡ ¯1°□) SplitLines
@@ -9,7 +9,7 @@ NameToAcceptedLetters ← ▽≥ ⊡⊡4⍖.. ≡(/+=)¤ ⊙. :◴.
 
 LineAcceptedLetters ← ⍚NameToAcceptedLetters Names
 
-RealMask ← ≡(/↧ ≡(∊:°□)¤) LineAcceptedLetters Checksums
+RealMask ← ≡(/↧ ≡(∈°□)¤) LineAcceptedLetters Checksums
 
 RealIds ← ▽ RealMask Ids
 RealSplitNames ← ▽ RealMask SplitNames

@@ -6,6 +6,6 @@ MoveA ← ⍜(⍉⇌)SlideE
 MoveB ← ⍥Cycle◿⊙⊃(-:N|⊡)⊃-∘⊃⊡∘⊢⊚≠⇡⧻..⊛.⇌[⍥(Cycle.)Probe]
 
 &fras "input.txt"
-⊜∘ ¬∊:"\r\n".
+⊜∘ ¬∈"\r\n".
 ⊃(MoveB|MoveA)
 ∩(/+♭×⇌+1⇡⧻.=@O)

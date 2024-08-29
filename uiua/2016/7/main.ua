@@ -1,4 +1,4 @@
-Ips ← ⊜□ ¬∊:"\n\r" . &fras "input.txt"
+Ips ← ⊜□ ¬∈"\n\r" . &fras "input.txt"
 
 Any ← ∧↥⊙0
 IsABA ← ↧⊃(≍ ⇌.|/≠↙2)

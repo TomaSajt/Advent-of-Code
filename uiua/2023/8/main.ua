@@ -1,6 +1,6 @@
 ▽≠@\r. &fras "input.txt"
 ⊃(↘|↙)⊗1⌕"\n\n".
-↯¯1_3_3 ⊜∘ ¬∊:"\r\n\s=(),".
+↯¯1_3_3 ⊜∘ ¬∈"\r\n\s=(),".
 
 # classify nodes: AAA:0 ZZZ:len-1
 ⊏⍏≡⊢.

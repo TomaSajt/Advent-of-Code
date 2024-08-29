@@ -1,5 +1,5 @@
 &fras "input.txt"
-⋕ ▽¬∊:"\n\r".
+⋕ ▽¬∈"\n\r".
 Num ←
 
 Ring ← ⌈÷2-1√Num
