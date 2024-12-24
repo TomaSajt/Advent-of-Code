@@ -1,3 +1,5 @@
+# Experimental!
+
 ┌─╴test
   ~ "1.ua" ~ Solve
 
@@ -67,5 +69,47 @@
   Solve &fras "./in/5-2.txt"
   5762
   4130
+  ⍤⤙≍∩□₂
+└─╴
+
+┌─╴test
+  ~ "6.ua" ~ Solve
+
+  Solve &fras "./in/6-1.txt"
+  41
+  "Part 2 Missing" # 6
+  ⍤⤙≍∩□₂
+
+  Solve &fras "./in/6-2.txt"
+  4967
+  "Part 2 Missing" # 1789
+  ⍤⤙≍∩□₂
+└─╴
+
+┌─╴test
+  ~ "7.ua" ~ Solve
+
+  Solve &fras "./in/7-1.txt"
+  3749
+  11387
+  ⍤⤙≍∩□₂
+
+  Solve &fras "./in/7-2.txt"
+  12839601725877
+  149956401519484
+  ⍤⤙≍∩□₂
+└─╴
+
+┌─╴test
+  ~ "8.ua" ~ Solve
+
+  Solve &fras "./in/8-1.txt"
+  14
+  34
+  ⍤⤙≍∩□₂
+
+  Solve &fras "./in/8-2.txt"
+  303
+  1045
   ⍤⤙≍∩□₂
 └─╴
