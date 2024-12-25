@@ -113,3 +113,17 @@
   1045
   ⍤⤙≍∩□₂
 └─╴
+
+┌─╴test
+  ~ "25.ua" ~ Solve
+
+  Solve &fras "./in/25-1.txt"
+  3
+  "Merry Christmas!"
+  ⍤⤙≍∩□₂
+
+  Solve &fras "./in/25-2.txt"
+  3201
+  "Merry Christmas!"
+  ⍤⤙≍∩□₂
+└─╴
