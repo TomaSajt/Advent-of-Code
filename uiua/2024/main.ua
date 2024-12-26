@@ -115,6 +115,20 @@
 └─╴
 
 ┌─╴test
+  ~ "9.ua" ~ Solve
+
+  Solve &fras "./in/9-1.txt"
+  1928
+  2858
+  ⍤⤙≍∩□₂
+
+  Solve &fras "./in/9-2.txt"
+  6341711060162
+  6377400869326
+  ⍤⤙≍∩□₂
+└─╴
+
+┌─╴test
   ~ "25.ua" ~ Solve
 
   Solve &fras "./in/25-1.txt"
