@@ -25,3 +25,31 @@
   413
   ⍤⤙≍∩□₂
 └─╴
+
+┌─╴test
+  ~ "3.ua" ~ Solve
+
+  Solve &fras "./in/3-1.txt"
+  7
+  336
+  ⍤⤙≍∩□₂
+
+  Solve &fras "./in/3-2.txt"
+  220
+  2138320800
+  ⍤⤙≍∩□₂
+└─╴
+
+┌─╴test
+  ~ "4.ua" ~ Solve
+
+  Solve &fras "./in/4-1.txt"
+  2
+  2 # this value wasn't included on the website
+  ⍤⤙≍∩□₂
+
+  Solve &fras "./in/4-2.txt"
+  235
+  194
+  ⍤⤙≍∩□₂
+└─╴
