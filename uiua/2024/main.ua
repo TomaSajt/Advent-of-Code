@@ -129,6 +129,62 @@
 └─╴
 
 ┌─╴test
+  ~ "10.ua" ~ Solve
+
+  Solve &fras "./in/10-1.txt"
+  36
+  81
+  ⍤⤙≍∩□₂
+
+  Solve &fras "./in/10-2.txt"
+  587
+  1340
+  ⍤⤙≍∩□₂
+└─╴
+
+┌─╴test
+  ~ "11.ua" ~ Solve
+
+  Solve &fras "./in/11-1.txt"
+  55312
+  65601038650482 # Note: this was not on the website
+  ⍤⤙≍∩□₂
+
+  Solve &fras "./in/11-2.txt"
+  186996
+  221683913164898
+  ⍤⤙≍∩□₂
+└─╴
+
+┌─╴test
+  ~ "12.ua" ~ Solve
+
+  Solve &fras "./in/12-1.txt"
+  1930
+  1206
+  ⍤⤙≍∩□₂
+
+  Solve &fras "./in/12-2.txt"
+  1546338
+  978590
+  ⍤⤙≍∩□₂
+└─╴
+
+┌─╴test
+  ~ "13.ua" ~ Solve
+
+  Solve &fras "./in/13-1.txt"
+  480
+  875318608908 # Note: this was not on the website
+  ⍤⤙≍∩□₂
+
+  Solve &fras "./in/13-2.txt"
+  26810
+  108713182988244
+  ⍤⤙≍∩□₂
+└─╴
+
+┌─╴test
   ~ "25.ua" ~ Solve
 
   Solve &fras "./in/25-1.txt"
